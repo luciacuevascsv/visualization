@@ -1,5 +1,5 @@
 from dash import Dash, dcc, html, Input, Output, State
-from graficas import grafica_rank, score_by_region, peso_por_factor, scatter_happiness, happiness_map, media_line_region, media_bar_region, paises_graph, media_graph, mapa_graph, radar_factores_region, happiness_forecast
+from graficas import grafica_rank, media_line_region, media_bar_region, paises_graph, media_graph, mapa_graph, radar_factores_region, happiness_forecast
 import pandas as pd
 from dash import ctx
 
@@ -139,7 +139,7 @@ app.layout = html.Div([
 
                 ], style={'display': 'flex', 'flex-direction': 'column', 'gap':'10px'})
 
-            ], style={'display': 'flex', 'flex-direction': 'row', 'gap':'10px'}),
+            ], style={'display': 'flex', 'flex-direction': 'row', 'gap':'10px', 'width': '100%', 'margin':'auto', 'text-align': 'center', 'justify-content': 'center'}),
 
             # FILTRO GROUP BY
             html.Div([
@@ -168,11 +168,11 @@ app.layout = html.Div([
                 
                 # PLOT MEDIAS REGIONES
                 html.Div([
-                    dcc.Graph(id='graf5', style={'justify-content': 'center', 'text-align': 'center', 'margin': '10px auto auto auto'}),
+                    dcc.Graph(id='graf5', style={}),
                     html.P(id='graficas_media_leyenda')
-                ], style={'display': 'flex', 'flex-direction': 'column', 'gap': '10px',  'justify-content': 'center', 'text-align': 'center', 'margin': 'auto', 'flex':'0.6'})
+                ], style={'display': 'flex', 'flex-direction': 'column', 'gap': '10px', 'justify-content': 'center', 'text-align': 'center'})
 
-            ], style={'display': 'flex', 'flex-direction': 'row', 'gap':'10px'})
+            ], style={'display': 'flex', 'flex-direction': 'row', 'gap':'10px', 'width': '100%', 'margin':'auto', 'text-align': 'center', 'justify-content': 'center'})
 
         ], style={'display': 'flex', 'flex-direction': 'column',  'background-color': 'white', 'gap':'30px', 'borderRadius': '5px', 'padding': '25px', 'margin': '10px 0px'}),
 
@@ -191,7 +191,7 @@ app.layout = html.Div([
                             min=5,  
                             max=15, 
                             step=1,
-                            value=10,  
+                            value=9,  
                             marks={i: str(i) for i in range(5,16)},
                             tooltip={"placement": "bottom", "always_visible": True}
                         )
@@ -233,7 +233,7 @@ app.layout = html.Div([
 
             ], style={'display': 'flex', 'flex-direction': 'column', 'gap':'10px', 'background-color': 'white', 'borderRadius': '5px', 'padding': '25px'})
 
-        ], style={'display': 'flex', 'flex-direction': 'row', 'gap':'25px', 'margin': '10px 0px'})
+        ], style={'display': 'flex', 'flex-direction': 'row', 'gap':'25px', 'width': '70%', 'margin':'auto', 'text-align': 'center', 'justify-content': 'center'})
 
     ], style={'flex':'0.9', 'display': 'flex', 'flex-direction': 'column', 'gap':'20px', 'margin-left': '180px'}),
 
@@ -284,7 +284,7 @@ def update_graphs(years, year, group_by_barras, group_by_factores, top_paises, n
     fig5=media_line_region(data, years, year, region_media_bar_region, group_by_barras)
     fig6=radar_factores_region(data, years, group_by_factores, normalizar_factores)
     fig7=grafica_rank(data, top_paises, years)
-    fig8=happiness_forecast(data, years, pais_seleccionado, num_años)
+    fig8=happiness_forecast(data, years, year, pais_seleccionado, num_años)
 
     return fig1, fig2, fig3, fig4, fig5, fig6, fig7, fig8
 
