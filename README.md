@@ -1,4 +1,4 @@
-# A Decade of Happiness: Global Rankings and Factors
+# Índice de Felicidad 
 
 Este repositorio contiene una **visualización interactiva** de varios datos relacionados con el Happiness Score del mundo de 2015 a 2024. La aplicación está desarrollada con **Dash**, **Plotly** y **Pandas**.
 
